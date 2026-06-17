@@ -27,11 +27,11 @@
             <div class="row g-3">
               <div class="col-md-6">
                 <label for="firstName" class="form-label fw-medium">First Name</label>
-                  <input type="text" class="form-control form-control-lg rounded-pill" id="firstName" placeholder="John" maxlength="16" required>
+                  <input type="text" class="form-control form-control-lg rounded-pill" id="firstName" placeholder="John" maxlength="16" pattern="[A-Za-z\s]+" title="Letters and spaces only" required>
               </div>
               <div class="col-md-6">
                 <label for="lastName" class="form-label fw-medium">Last Name</label>
-                  <input type="text" class="form-control form-control-lg rounded-pill" id="lastName" placeholder="Doe" maxlength="16" required>
+                  <input type="text" class="form-control form-control-lg rounded-pill" id="lastName" placeholder="Doe" maxlength="16" pattern="[A-Za-z\s]+" title="Letters and spaces only" required>
               </div>
             </div>
             <div class="mb-3 mt-3">

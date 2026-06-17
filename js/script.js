@@ -77,6 +77,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // ====== Restrict name inputs to A-Z + spaces, max 16 chars ======
+  function enforceNameInput(input) {
+    input.addEventListener('input', function () {
+      this.value = this.value.replace(/[^A-Za-z\s]/g, '').slice(0, 16);
+    });
+  }
+  ['firstName', 'lastName', 'contactName'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) enforceNameInput(el);
+  });
+
   // ====== Register Form ======
   var registerForm = document.querySelector('#registerForm');
   if (registerForm) {
@@ -88,6 +99,8 @@ document.addEventListener('DOMContentLoaded', function () {
       var password = document.getElementById('regPassword').value.trim();
       var confirm = document.getElementById('confirmPassword').value.trim();
 
+      if (!firstName) { alert('Please enter your first name.'); return; }
+      if (!lastName) { alert('Please enter your last name.'); return; }
       if (password.length < 8) { alert('Password must be at least 8 characters.'); return; }
       if (password !== confirm) { alert('Passwords do not match.'); return; }
 
@@ -461,23 +474,138 @@ document.addEventListener('DOMContentLoaded', function () {
     observer.observe(statsSection.closest('.row'));
   }
 
-  // ====== Product Category Filter ======
+  // ====== Product Category Filter & Pagination ======
   (function () {
-    const filterContainer = document.getElementById('productFilters');
+    var filterContainer = document.getElementById('productFilters');
     if (!filterContainer) return;
 
-    const filterBtns = filterContainer.querySelectorAll('[data-filter]');
-    const productSection = filterContainer.closest('section').nextElementSibling;
-    if (!productSection) return;
-    const productCols = productSection.querySelectorAll('.col-6');
+    var filterBtns = filterContainer.querySelectorAll('[data-filter]');
+    var productsRow = document.getElementById('productsRow');
+    if (!productsRow) return;
+    var productCols = Array.from(productsRow.querySelectorAll('.col-6'));
+    var paginationControls = document.getElementById('paginationControls');
 
+    var currentFilter = 'all';
+    var currentPage = 1;
+    var perPage = 20;
+
+    // Assign data-category from <small> text
     productCols.forEach(function (col) {
-      const catEl = col.querySelector('.product-card .card-body small.text-muted');
+      var catEl = col.querySelector('.product-card .card-body small.text-muted');
       if (catEl) {
         col.setAttribute('data-category', catEl.textContent.trim().toLowerCase());
       }
     });
 
+    function getFilteredProducts() {
+      if (currentFilter === 'all') {
+        return productCols.slice();
+      }
+      return productCols.filter(function (col) {
+        return col.getAttribute('data-category') === currentFilter;
+      });
+    }
+
+    function renderPagination(totalItems) {
+      if (!paginationControls) return;
+      var totalPages = Math.max(1, Math.ceil(totalItems / perPage));
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      var html = '';
+
+      // Previous
+      html += '<li class="page-item' + (currentPage === 1 ? ' disabled' : '') + '">' +
+        '<a class="page-link page-prev" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>' +
+        '</li>';
+
+      // Page numbers
+      for (var i = 1; i <= totalPages; i++) {
+        html += '<li class="page-item' + (i === currentPage ? ' active' : '') + '">' +
+          '<a class="page-link page-num" href="#" data-page="' + i + '">' + i + '</a>' +
+          '</li>';
+      }
+
+      // Next
+      html += '<li class="page-item' + (currentPage === totalPages ? ' disabled' : '') + '">' +
+        '<a class="page-link page-next" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>' +
+        '</li>';
+
+      paginationControls.innerHTML = html;
+
+      // Attach events
+      paginationControls.querySelectorAll('.page-num').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          goToPage(parseInt(this.getAttribute('data-page')));
+        });
+      });
+
+      var prevBtn = paginationControls.querySelector('.page-prev');
+      if (prevBtn && !prevBtn.closest('.disabled')) {
+        prevBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (currentPage > 1) goToPage(currentPage - 1);
+        });
+      }
+
+      var nextBtn = paginationControls.querySelector('.page-next');
+      if (nextBtn && !nextBtn.closest('.disabled')) {
+        nextBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (currentPage < totalPages) goToPage(currentPage + 1);
+        });
+      }
+    }
+
+    function showPageItems(filtered) {
+      var start = (currentPage - 1) * perPage;
+      var end = start + perPage;
+
+      productCols.forEach(function (col) {
+        col.style.display = 'none';
+      });
+
+      for (var i = start; i < end && i < filtered.length; i++) {
+        filtered[i].style.display = '';
+      }
+    }
+
+    function goToPage(page) {
+      var filtered = getFilteredProducts();
+      var totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+      if (page < 1) page = 1;
+      if (page > totalPages) page = totalPages;
+      if (page === currentPage) return;
+      currentPage = page;
+
+      // Animate out then in
+      productsRow.classList.add('page-fade-out');
+      setTimeout(function () {
+        showPageItems(filtered);
+        renderPagination(filtered.length);
+        productsRow.classList.remove('page-fade-out');
+        productsRow.classList.add('page-fade-in');
+        setTimeout(function () {
+          productsRow.classList.remove('page-fade-in');
+        }, 300);
+      }, 200);
+    }
+
+    function applyFilter(filter) {
+      currentFilter = filter;
+      currentPage = 1;
+      var filtered = getFilteredProducts();
+
+      // No animation on filter change — just show
+      showPageItems(filtered);
+      renderPagination(filtered.length);
+
+      if (filtered.length === 0 && paginationControls) {
+        paginationControls.innerHTML = '<li class="page-item disabled"><span class="page-link">No products found</span></li>';
+      }
+    }
+
+    // Filter button clicks
     filterBtns.forEach(function (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
@@ -490,15 +618,12 @@ document.addEventListener('DOMContentLoaded', function () {
         this.classList.remove('btn-outline-primary');
         this.classList.add('btn-primary', 'active');
 
-        productCols.forEach(function (col) {
-          if (filter === 'all' || col.getAttribute('data-category') === filter) {
-            col.style.display = '';
-          } else {
-            col.style.display = 'none';
-          }
-        });
+        applyFilter(filter);
       });
     });
+
+    // Initial render: show first 20 products
+    applyFilter('all');
   })();
 
   // ====== Search Icon Click ======
@@ -529,6 +654,19 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
     document.body.appendChild(backBtn);
+  }
+
+  // ====== Contact Form Handler ======
+  var contactForm = document.querySelector('#contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('contactName').value.trim();
+      if (!/^[A-Za-z\s]+$/.test(name)) { alert('Name must contain only letters and spaces.'); return; }
+      if (name.length > 16) { alert('Name must be 16 characters or less.'); return; }
+      alert('Thank you for your message! We will get back to you shortly.');
+      contactForm.reset();
+    });
   }
 
   console.log('%c MediStore %c Medical Equipment Theme v1.0 ',
