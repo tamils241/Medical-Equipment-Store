@@ -9,6 +9,14 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- ====== Loader ====== -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-ring"></div>
+      <div class="loader-ring-inner"></div>
+      <i class="bi bi-heart-pulse"></i>
+    </div>
+  </div>
 
   <!-- ====== Top Bar ====== -->
   <div class="top-bar d-none d-lg-block">
@@ -18,10 +26,10 @@
         <span class="ms-3"><i class="bi bi-envelope"></i> info@medistore.com</span>
       </div>
       <div class="top-bar-social">
-        <a href="#"><i class="bi bi-facebook"></i></a>
-        <a href="#"><i class="bi bi-twitter-x"></i></a>
-        <a href="#"><i class="bi bi-linkedin"></i></a>
-        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="404.html"><i class="bi bi-facebook"></i></a>
+        <a href="404.html"><i class="bi bi-twitter-x"></i></a>
+        <a href="404.html"><i class="bi bi-linkedin"></i></a>
+        <a href="404.html"><i class="bi bi-instagram"></i></a>
       </div>
     </div>
   </div>
@@ -59,9 +67,9 @@
   <!-- ====== Page Header ====== -->
   <section class="page-header page-header-bg-products d-flex align-items-center">
     <div class="container text-center">
-      <span class="hero-badge">Cart</span>
-      <h1 class="text-white fw-bold display-4 mb-3">Shopping Cart</h1>
-      <p class="text-white-50 fs-5 mb-0 mx-auto" style="max-width: 600px;">Review and manage your selected items</p>
+      <span class="hero-badge" data-aos="fade-down">Cart</span>
+      <h1 class="text-white fw-bold display-4 mb-3" data-aos="fade-up">Shopping Cart</h1>
+      <p class="text-white-50 fs-5 mb-0 mx-auto" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="50">Review and manage your selected items</p>
     </div>
   </section>
 
@@ -70,35 +78,35 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-lg-8">
-          <div id="cartItems">
+          <div id="cartItems" data-aos="fade-up">
             <div class="text-center py-5" id="cartEmpty">
-              <i class="bi bi-cart3 display-1 text-muted mb-3 d-block"></i>
-              <h4 class="text-muted">Your cart is empty</h4>
-              <p class="text-muted mb-4">Browse our products and add items to your cart.</p>
-              <a href="products.html" class="btn btn-primary rounded-pill px-4">Shop Now</a>
+              <i class="bi bi-cart3 display-1 text-muted mb-3 d-block" data-aos="fade-up"></i>
+              <h4 class="text-muted" data-aos="fade-up" data-aos-delay="100">Your cart is empty</h4>
+              <p class="text-muted mb-4" data-aos="fade-up" data-aos-delay="200">Browse our products and add items to your cart.</p>
+              <a href="products.html" class="btn btn-primary rounded-pill px-4" data-aos="fade-up" data-aos-delay="300">Shop Now</a>
             </div>
           </div>
-          <div id="cartItemsContainer"></div>
+          <div id="cartItemsContainer" data-aos="fade-up"></div>
         </div>
         <div class="col-lg-4">
-          <div class="card border-0 shadow-sm">
+          <div class="card border-0 shadow-sm" data-aos="fade-left">
             <div class="card-body">
-              <h5 class="fw-bold mb-4">Order Summary</h5>
-              <div class="d-flex justify-content-between mb-2">
+              <h5 class="fw-bold mb-4" data-aos="fade-up">Order Summary</h5>
+              <div class="d-flex justify-content-between mb-2" data-aos="fade-up" data-aos-delay="50">
                 <span class="text-muted">Subtotal</span>
                 <span class="fw-bold" id="cartSubtotal">$0</span>
               </div>
-              <div class="d-flex justify-content-between mb-2">
+              <div class="d-flex justify-content-between mb-2" data-aos="fade-up" data-aos-delay="100">
                 <span class="text-muted">Shipping</span>
                 <span class="fw-bold" id="cartShipping">$0</span>
               </div>
               <hr>
-              <div class="d-flex justify-content-between mb-3">
+              <div class="d-flex justify-content-between mb-3" data-aos="fade-up" data-aos-delay="150">
                 <span class="fs-5 fw-bold">Total</span>
                 <span class="fs-5 fw-bold text-primary" id="cartTotal">$0</span>
               </div>
-              <button class="btn btn-primary w-100 rounded-pill mb-2" id="checkoutBtn">Proceed to Checkout</button>
-              <button class="btn btn-outline-danger w-100 rounded-pill" id="clearCartBtn">Clear Cart</button>
+              <button class="btn btn-primary w-100 rounded-pill mb-2" id="checkoutBtn" data-aos="fade-up" data-aos-delay="200">Proceed to Checkout</button>
+              <button class="btn btn-outline-danger w-100 rounded-pill" id="clearCartBtn" data-aos="fade-up" data-aos-delay="250">Clear Cart</button>
             </div>
           </div>
         </div>
@@ -111,9 +119,9 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 text-center">
-          <h3 class="text-white mb-2">Subscribe to Our Newsletter</h3>
-          <p class="text-white-50 mb-4">Get the latest updates on new products and exclusive offers.</p>
-          <form class="newsletter-form d-flex gap-2">
+          <h3 class="text-white mb-2" data-aos="fade-up">Subscribe to Our Newsletter</h3>
+          <p class="text-white-50 mb-4" data-aos="fade-up" data-aos-delay="50">Get the latest updates on new products and exclusive offers.</p>
+          <form class="newsletter-form d-flex gap-2" data-aos="fade-up" data-aos-delay="100">
             <input type="email" class="form-control form-control-lg rounded-pill" placeholder="Enter your email address" required>
             <button type="submit" class="btn btn-warning rounded-pill px-4 flex-shrink-0">Subscribe</button>
           </form>
@@ -126,19 +134,19 @@
   <footer class="footer pt-5 pb-3">
     <div class="container">
       <div class="row g-4">
-        <div class="col-lg-4">
+        <div class="col-lg-4" data-aos="fade-up">
           <a class="navbar-brand d-flex align-items-center text-white mb-3" href="index.html">
             <img src="images/logo.webp" alt="MediStore" height="36">
           </a>
           <p class="text-white-50 small">Your trusted partner for premium medical equipment and healthcare solutions. Serving hospitals, clinics, and healthcare facilities worldwide.</p>
           <div class="footer-social">
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-twitter-x"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-linkedin"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
           </div>
         </div>
-        <div class="col-6 col-lg-2">
+        <div class="col-6 col-lg-2" data-aos="fade-up">
           <h6 class="text-white mb-3">Quick Links</h6>
           <ul class="list-unstyled footer-links">
             <li><a href="index.html">Home</a></li>
@@ -148,14 +156,14 @@
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-        <div class="col-6 col-lg-2">
+        <div class="col-6 col-lg-2" data-aos="fade-up">
           <h6 class="text-white mb-3">Categories</h6>
           <ul class="list-unstyled footer-links">
-            <li><a href="categories.html">Cardiology</a></li>
-            <li><a href="categories.html">Respiratory</a></li>
-            <li><a href="categories.html">Diagnostic</a></li>
-            <li><a href="categories.html">Surgical</a></li>
-            <li><a href="categories.html">Patient Care</a></li>
+            <li><a href="products.html?category=cardiology">Cardiology</a></li>
+            <li><a href="products.html?category=respiratory">Respiratory</a></li>
+            <li><a href="products.html?category=diagnostic">Diagnostic</a></li>
+            <li><a href="products.html?category=surgical">Surgical</a></li>
+            <li><a href="products.html?category=patient-care">Patient Care</a></li>
           </ul>
         </div>
         <div class="col-lg-4">
@@ -174,7 +182,7 @@
           <small class="text-white-50">&copy; 2026 MediStore. All rights reserved.</small>
         </div>
         <div class="col-md-4 text-center text-md-end">
-          <small class="text-white-50"><a href="#" class="text-white-50 me-2">Privacy Policy</a> | <a href="#" class="text-white-50 ms-2">Terms of Service</a></small>
+          <small class="text-white-50"><a href="404.html" class="text-white-50 me-2">Privacy Policy</a> | <a href="404.html" class="text-white-50 ms-2">Terms of Service</a></small>
         </div>
       </div>
     </div>

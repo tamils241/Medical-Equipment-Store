@@ -622,8 +622,30 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // Initial render: show first 20 products
-    applyFilter('all');
+    // Check for ?category= URL parameter
+    var urlParams = new URLSearchParams(window.location.search);
+    var categoryFromUrl = urlParams.get('category');
+    if (categoryFromUrl) {
+      // Map URL param values to data-filter values
+      var paramToFilter = {
+        'lab-diagnostic': 'lab & diagnostic',
+        'patient-care': 'patient care',
+        'infection-control': 'infection control'
+      };
+      var targetFilter = paramToFilter[categoryFromUrl] || categoryFromUrl;
+      // Find matching filter button and click it
+      var matchBtn = Array.from(filterBtns).find(function (btn) {
+        return btn.getAttribute('data-filter') === targetFilter;
+      });
+      if (matchBtn) {
+        matchBtn.click();
+      } else {
+        applyFilter('all');
+      }
+    } else {
+      // Initial render: show first 20 products
+      applyFilter('all');
+    }
   })();
 
   // ====== Search Icon Click ======
@@ -668,6 +690,87 @@ document.addEventListener('DOMContentLoaded', function () {
       contactForm.reset();
     });
   }
+
+  // ====== Scroll Reveal Animation ======
+  const aosElements = document.querySelectorAll('[data-aos]');
+  if (aosElements.length) {
+    const aosObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var delay = parseInt(entry.target.getAttribute('data-aos-delay')) || 0;
+          setTimeout(function () {
+            entry.target.classList.add('aos-animate');
+          }, delay);
+          aosObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    aosElements.forEach(function (el) { aosObserver.observe(el); });
+  }
+
+  // ====== Loader ======
+  window.addEventListener('load', function () {
+    var loader = document.getElementById('loader');
+    if (loader) {
+      loader.classList.add('hidden');
+      setTimeout(function () { loader.style.display = 'none'; }, 600);
+    }
+  });
+
+  // ====== Hero Text Animation ======
+  document.querySelectorAll('.hero-text').forEach(function (container) {
+    container.querySelectorAll('h1, p, .hero-badge, .hero-buttons a').forEach(function (el) {
+      var text = el.textContent.trim();
+      if (!text || el.querySelector('.word')) return;
+      var words = text.split(/\s+/);
+      if (words.length <= 1) return;
+      el.innerHTML = words.map(function (w, i) {
+        return '<span class="word" style="--i:' + i + '">' + w + '</span>';
+      }).join(' ');
+    });
+  });
+
+  function animateActiveHero() {
+    document.querySelectorAll('.hero-text').forEach(function (h) { h.classList.remove('animate-words'); });
+    var active = document.querySelector('.carousel-item.active .hero-text');
+    if (active) {
+      void active.offsetWidth;
+      active.classList.add('animate-words');
+    }
+  }
+  animateActiveHero();
+
+  var heroCarousel = document.getElementById('heroCarousel');
+  if (heroCarousel) {
+    heroCarousel.addEventListener('slid.bs.carousel', animateActiveHero);
+  }
+
+  // ====== Section Text Animation ======
+  function animateSectionWords(containerSel) {
+    var container = document.querySelector(containerSel);
+    if (!container || container.classList.contains('words-setup')) return;
+    container.classList.add('words-setup');
+    container.querySelectorAll('h2, p').forEach(function (el) {
+      var text = el.textContent.trim();
+      if (!text || el.querySelector('.word')) return;
+      var words = text.split(/\s+/);
+      if (words.length <= 1) return;
+      el.innerHTML = words.map(function (w, i) {
+        return '<span class="word" style="--i:' + i + '">' + w + '</span>';
+      }).join(' ');
+    });
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-words');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(container);
+  }
+  animateSectionWords('.how-it-works .section-title');
+  animateSectionWords('#categories .section-title');
 
   console.log('%c MediStore %c Medical Equipment Theme v1.0 ',
     'background:#0d6efd;color:#fff;padding:4px 0 4px 8px;border-radius:4px 0 0 4px;font-weight:700;',

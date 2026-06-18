@@ -9,6 +9,14 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- ====== Loader ====== -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-ring"></div>
+      <div class="loader-ring-inner"></div>
+      <i class="bi bi-heart-pulse"></i>
+    </div>
+  </div>
 
   <!-- ====== Top Bar ====== -->
   <div class="top-bar d-none d-lg-block">
@@ -18,10 +26,10 @@
         <span class="ms-3"><i class="bi bi-envelope"></i> info@medistore.com</span>
       </div>
       <div class="top-bar-social">
-        <a href="#"><i class="bi bi-facebook"></i></a>
-        <a href="#"><i class="bi bi-twitter-x"></i></a>
-        <a href="#"><i class="bi bi-linkedin"></i></a>
-        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="404.html"><i class="bi bi-facebook"></i></a>
+        <a href="404.html"><i class="bi bi-twitter-x"></i></a>
+        <a href="404.html"><i class="bi bi-linkedin"></i></a>
+        <a href="404.html"><i class="bi bi-instagram"></i></a>
       </div>
     </div>
   </div>
@@ -67,9 +75,9 @@
   <!-- ====== Page Header ====== -->
   <section class="page-header page-header-bg-user d-flex align-items-center">
     <div class="container text-center">
-      <span class="hero-badge">My Account</span>
-      <h1 class="text-white fw-bold display-4 mb-3">My Dashboard</h1>
-      <p class="text-white-50 fs-5 mb-0 mx-auto" style="max-width: 600px;">Manage your orders, profile, and preferences</p>
+      <span class="hero-badge" data-aos="fade-down">My Account</span>
+      <h1 class="text-white fw-bold display-4 mb-3" data-aos="fade-up">My Dashboard</h1>
+      <p class="text-white-50 fs-5 mb-0 mx-auto" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="50">Manage your orders, profile, and preferences</p>
     </div>
   </section>
 
@@ -79,34 +87,34 @@
       <div class="row g-4">
         <!-- Sidebar -->
         <div class="col-lg-3">
-          <div class="dashboard-sidebar p-3">
+          <div class="dashboard-sidebar p-3" data-aos="fade-left">
             <div class="text-center mb-3 pt-2">
-              <img src="images/product-1.webp" alt="User" class="user-avatar border border-2 border-white shadow-sm mb-2" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%230d6efd%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-size=%2230%22 font-weight=%22bold%22>U</text></svg>'">
-              <h6 class="text-white mb-0" id="sidebarUserName">User</h6>
-              <small class="text-white-50" id="sidebarUserEmail">user@example.com</small>
+              <img src="images/product-1.webp" alt="User" class="user-avatar border border-2 border-white shadow-sm mb-2" data-aos="fade-up" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%230d6efd%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-size=%2230%22 font-weight=%22bold%22>U</text></svg>'">
+              <h6 class="text-white mb-0" id="sidebarUserName" data-aos="fade-up" data-aos-delay="50">User</h6>
+              <small class="text-white-50" id="sidebarUserEmail" data-aos="fade-up" data-aos-delay="100">user@example.com</small>
             </div>
             <hr class="border-secondary">
             <nav class="nav flex-column">
-              <a class="nav-link active" href="#"><i class="bi bi-speedometer2"></i> Dashboard</a>
-              <a class="nav-link" href="#"><i class="bi bi-box"></i> My Orders</a>
-              <a class="nav-link" href="#"><i class="bi bi-heart"></i> Wishlist</a>
-              <a class="nav-link" href="#"><i class="bi bi-gear"></i> Settings</a>
-              <a class="nav-link" href="cart.html"><i class="bi bi-cart3"></i> Cart</a>
-              <a class="nav-link" href="products.html"><i class="bi bi-search"></i> Browse Products</a>
-              <a class="nav-link" href="index.html"><i class="bi bi-house-door"></i> Home</a>
+              <a class="nav-link active" href="#" data-aos="fade-up" data-aos-delay="0"><i class="bi bi-speedometer2"></i> Dashboard</a>
+              <a class="nav-link" href="#" data-aos="fade-up" data-aos-delay="50"><i class="bi bi-box"></i> My Orders</a>
+              <a class="nav-link" href="#" data-aos="fade-up" data-aos-delay="100"><i class="bi bi-heart"></i> Wishlist</a>
+              <a class="nav-link" href="#" data-aos="fade-up" data-aos-delay="150"><i class="bi bi-gear"></i> Settings</a>
+              <a class="nav-link" href="cart.html" data-aos="fade-up" data-aos-delay="200"><i class="bi bi-cart3"></i> Cart</a>
+              <a class="nav-link" href="products.html" data-aos="fade-up" data-aos-delay="250"><i class="bi bi-search"></i> Browse Products</a>
+              <a class="nav-link" href="index.html" data-aos="fade-up" data-aos-delay="300"><i class="bi bi-house-door"></i> Home</a>
             </nav>
           </div>
         </div>
         <!-- Main Content -->
         <div class="col-lg-9">
           <!-- Welcome -->
-          <div class="card border-0 shadow-sm mb-4">
+          <div class="card border-0 shadow-sm mb-4" data-aos="fade-up" data-aos-delay="0">
             <div class="card-body p-4">
               <div class="d-flex align-items-center gap-3">
-                <div class="dashboard-icon bg-primary bg-opacity-10 text-primary"><i class="bi bi-person"></i></div>
+                <div class="dashboard-icon bg-primary bg-opacity-10 text-primary" data-aos="zoom-in"><i class="bi bi-person"></i></div>
                 <div>
-                  <h5 class="fw-bold mb-1">Welcome back, <span id="welcomeUserName">User</span>!</h5>
-                  <p class="text-muted mb-0">Here's a summary of your account activity.</p>
+                  <h5 class="fw-bold mb-1" data-aos="fade-up">Welcome back, <span id="welcomeUserName">User</span>!</h5>
+                  <p class="text-muted mb-0" data-aos="fade-up" data-aos-delay="50">Here's a summary of your account activity.</p>
                 </div>
               </div>
             </div>
@@ -115,7 +123,7 @@
           <!-- Stats -->
           <div class="row g-3 mb-4">
             <div class="col-6 col-md-3">
-              <div class="card border-0 shadow-sm dashboard-card">
+              <div class="card border-0 shadow-sm dashboard-card" data-aos="zoom-in" data-aos-delay="0">
                 <div class="card-body">
                   <div class="d-flex align-items-center gap-3">
                     <div class="dashboard-icon bg-primary bg-opacity-10 text-primary"><i class="bi bi-receipt"></i></div>
@@ -128,7 +136,7 @@
               </div>
             </div>
             <div class="col-6 col-md-3">
-              <div class="card border-0 shadow-sm dashboard-card">
+              <div class="card border-0 shadow-sm dashboard-card" data-aos="zoom-in" data-aos-delay="100">
                 <div class="card-body">
                   <div class="d-flex align-items-center gap-3">
                     <div class="dashboard-icon bg-success bg-opacity-10 text-success"><i class="bi bi-check-circle"></i></div>
@@ -141,7 +149,7 @@
               </div>
             </div>
             <div class="col-6 col-md-3">
-              <div class="card border-0 shadow-sm dashboard-card">
+              <div class="card border-0 shadow-sm dashboard-card" data-aos="zoom-in" data-aos-delay="200">
                 <div class="card-body">
                   <div class="d-flex align-items-center gap-3">
                     <div class="dashboard-icon bg-warning bg-opacity-10 text-warning"><i class="bi bi-heart"></i></div>
@@ -154,7 +162,7 @@
               </div>
             </div>
             <div class="col-6 col-md-3">
-              <div class="card border-0 shadow-sm dashboard-card">
+              <div class="card border-0 shadow-sm dashboard-card" data-aos="zoom-in" data-aos-delay="300">
                 <div class="card-body">
                   <div class="d-flex align-items-center gap-3">
                     <div class="dashboard-icon bg-info bg-opacity-10 text-info"><i class="bi bi-cart3"></i></div>
@@ -169,14 +177,14 @@
           </div>
 
           <!-- Recent Orders -->
-          <div class="card border-0 shadow-sm">
+          <div class="card border-0 shadow-sm" data-aos="fade-up" data-aos-delay="200">
             <div class="card-header bg-transparent border-bottom d-flex justify-content-between align-items-center py-3">
-              <h5 class="fw-bold mb-0"><i class="bi bi-clock-history me-2"></i>Recent Orders</h5>
-              <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">View All</a>
+              <h5 class="fw-bold mb-0" data-aos="fade-up"><i class="bi bi-clock-history me-2"></i>Recent Orders</h5>
+              <a href="#" class="btn btn-sm btn-outline-primary rounded-pill" data-aos="fade-up" data-aos-delay="50">View All</a>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0" data-aos="fade-up" data-aos-delay="100">
                   <thead class="table-light">
                     <tr>
                       <th class="ps-3">Order ID</th>
@@ -223,9 +231,9 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 text-center">
-          <h3 class="text-white mb-2">Subscribe to Our Newsletter</h3>
-          <p class="text-white-50 mb-4">Get the latest updates on new products and exclusive offers.</p>
-          <form class="newsletter-form d-flex gap-2">
+          <h3 class="text-white mb-2" data-aos="fade-up">Subscribe to Our Newsletter</h3>
+          <p class="text-white-50 mb-4" data-aos="fade-up" data-aos-delay="50">Get the latest updates on new products and exclusive offers.</p>
+          <form class="newsletter-form d-flex gap-2" data-aos="fade-up" data-aos-delay="100">
             <input type="email" class="form-control form-control-lg rounded-pill" placeholder="Enter your email address" required>
             <button type="submit" class="btn btn-warning rounded-pill px-4 flex-shrink-0">Subscribe</button>
           </form>
@@ -239,19 +247,19 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-lg-4">
-          <a class="navbar-brand d-flex align-items-center text-white mb-3" href="index.html">
+          <a class="navbar-brand d-flex align-items-center text-white mb-3" href="index.html" data-aos="fade-up">
             <img src="images/logo.webp" alt="MediStore" height="36">
           </a>
           <p class="text-white-50 small">Your trusted partner for premium medical equipment and healthcare solutions.</p>
           <div class="footer-social">
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-twitter-x"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-linkedin"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
           </div>
         </div>
         <div class="col-6 col-lg-2">
-          <h6 class="text-white mb-3">Quick Links</h6>
+          <h6 class="text-white mb-3" data-aos="fade-up">Quick Links</h6>
           <ul class="list-unstyled footer-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
@@ -261,13 +269,13 @@
           </ul>
         </div>
         <div class="col-6 col-lg-2">
-          <h6 class="text-white mb-3">Categories</h6>
+          <h6 class="text-white mb-3" data-aos="fade-up">Categories</h6>
           <ul class="list-unstyled footer-links">
-            <li><a href="categories.html">Cardiology</a></li>
-            <li><a href="categories.html">Respiratory</a></li>
-            <li><a href="categories.html">Diagnostic</a></li>
-            <li><a href="categories.html">Surgical</a></li>
-            <li><a href="categories.html">Patient Care</a></li>
+            <li><a href="products.html?category=cardiology">Cardiology</a></li>
+            <li><a href="products.html?category=respiratory">Respiratory</a></li>
+            <li><a href="products.html?category=diagnostic">Diagnostic</a></li>
+            <li><a href="products.html?category=surgical">Surgical</a></li>
+            <li><a href="products.html?category=patient-care">Patient Care</a></li>
           </ul>
         </div>
         <div class="col-lg-4">
@@ -286,7 +294,7 @@
           <small class="text-white-50">&copy; 2026 MediStore. All rights reserved.</small>
         </div>
         <div class="col-md-4 text-center text-md-end">
-          <small class="text-white-50"><a href="#" class="text-white-50 me-2">Privacy Policy</a> | <a href="#" class="text-white-50 ms-2">Terms of Service</a></small>
+          <small class="text-white-50"><a href="404.html" class="text-white-50 me-2">Privacy Policy</a> | <a href="404.html" class="text-white-50 ms-2">Terms of Service</a></small>
         </div>
       </div>
     </div>

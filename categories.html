@@ -9,6 +9,14 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- ====== Loader ====== -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-ring"></div>
+      <div class="loader-ring-inner"></div>
+      <i class="bi bi-heart-pulse"></i>
+    </div>
+  </div>
 
   <!-- ====== Top Bar ====== -->
   <div class="top-bar d-none d-lg-block">
@@ -18,10 +26,10 @@
         <span class="ms-3"><i class="bi bi-envelope"></i> info@medistore.com</span>
       </div>
       <div class="top-bar-social">
-        <a href="#"><i class="bi bi-facebook"></i></a>
-        <a href="#"><i class="bi bi-twitter-x"></i></a>
-        <a href="#"><i class="bi bi-linkedin"></i></a>
-        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="404.html"><i class="bi bi-facebook"></i></a>
+        <a href="404.html"><i class="bi bi-twitter-x"></i></a>
+        <a href="404.html"><i class="bi bi-linkedin"></i></a>
+        <a href="404.html"><i class="bi bi-instagram"></i></a>
       </div>
     </div>
   </div>
@@ -58,10 +66,10 @@
   <!-- ====== Page Header ====== -->
   <section class="page-header page-header-bg-categories d-flex align-items-center">
     <div class="container text-center">
-      <span class="hero-badge">Browse Our Collection</span>
-      <h1 class="text-white fw-bold display-4 mb-2">Shop by Category</h1>
-      <p class="text-white-50 fs-5 mb-0">Find exactly what you need from our wide range of medical categories</p>
-      <form class="hero-search mt-4 mx-auto" style="max-width: 500px;">
+      <span class="hero-badge" data-aos="fade-down">Browse Our Collection</span>
+      <h1 class="text-white fw-bold display-4 mb-2" data-aos="fade-up">Shop by Category</h1>
+      <p class="text-white-50 fs-5 mb-0" data-aos="fade-up" data-aos-delay="50">Find exactly what you need from our wide range of medical categories</p>
+      <form class="hero-search mt-4 mx-auto" style="max-width: 500px;" data-aos="fade-up" data-aos-delay="100">
         <div class="input-group rounded-pill overflow-hidden bg-white shadow">
           <input type="text" class="form-control border-0 ps-4" placeholder="Search categories..." aria-label="Search">
           <button class="btn btn-primary px-4" type="submit"><i class="bi bi-search"></i></button>
@@ -74,85 +82,85 @@
   <section class="section-padding section-darker">
     <div class="container">
       <div class="row g-4">
-        <div class="col-lg-4 col-md-6">
-          <div class="card border-0 shadow-sm h-100 text-center p-5 rounded-4 category-card">
+        <div class="col-sm-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4 p-md-5 rounded-4 category-card" data-aos="fade-up">
             <i class="bi bi-heart-pulse display-1 text-primary mb-3"></i>
             <h3 class="fw-bold">Cardiology</h3>
             <p class="text-muted mb-3">Heart monitoring & cardiac care equipment</p>
             <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 fs-6 fw-normal">48 items</span>
-            <a href="products.html" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
+            <a href="products.html?category=cardiology" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card border-0 shadow-sm h-100 text-center p-5 rounded-4 category-card">
+        <div class="col-sm-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4 p-md-5 rounded-4 category-card" data-aos="fade-up" data-aos-delay="100">
             <i class="bi bi-lungs display-1 text-primary mb-3"></i>
             <h3 class="fw-bold">Respiratory</h3>
             <p class="text-muted mb-3">Ventilators, CPAP & respiratory aids</p>
             <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 fs-6 fw-normal">36 items</span>
-            <a href="products.html" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
+            <a href="products.html?category=respiratory" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card border-0 shadow-sm h-100 text-center p-5 rounded-4 category-card">
+        <div class="col-sm-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4 p-md-5 rounded-4 category-card" data-aos="fade-up" data-aos-delay="200">
             <i class="bi bi-eyedropper display-1 text-primary mb-3"></i>
             <h3 class="fw-bold">Lab & Diagnostic</h3>
             <p class="text-muted mb-3">Testing, analysis & diagnostic tools</p>
             <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 fs-6 fw-normal">52 items</span>
-            <a href="products.html" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
+            <a href="products.html?category=lab-diagnostic" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card border-0 shadow-sm h-100 text-center p-5 rounded-4 category-card">
+        <div class="col-sm-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4 p-md-5 rounded-4 category-card" data-aos="fade-up" data-aos-delay="300">
             <i class="bi bi-scissors display-1 text-primary mb-3"></i>
             <h3 class="fw-bold">Surgical</h3>
             <p class="text-muted mb-3">Surgical instruments & operating room supplies</p>
             <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 fs-6 fw-normal">44 items</span>
-            <a href="products.html" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
+            <a href="products.html?category=surgical" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card border-0 shadow-sm h-100 text-center p-5 rounded-4 category-card">
+        <div class="col-sm-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4 p-md-5 rounded-4 category-card" data-aos="fade-up" data-aos-delay="400">
             <i class="bi bi-hospital display-1 text-primary mb-3"></i>
             <h3 class="fw-bold">Patient Care</h3>
             <p class="text-muted mb-3">Beds, monitors & patient comfort equipment</p>
             <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 fs-6 fw-normal">38 items</span>
-            <a href="products.html" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
+            <a href="products.html?category=patient-care" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card border-0 shadow-sm h-100 text-center p-5 rounded-4 category-card">
+        <div class="col-sm-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4 p-md-5 rounded-4 category-card" data-aos="fade-up" data-aos-delay="500">
             <i class="bi bi-droplet display-1 text-primary mb-3"></i>
             <h3 class="fw-bold">Infection Control</h3>
             <p class="text-muted mb-3">Sterilization, PPE & hygiene products</p>
             <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 fs-6 fw-normal">29 items</span>
-            <a href="products.html" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
+            <a href="products.html?category=infection-control" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card border-0 shadow-sm h-100 text-center p-5 rounded-4 category-card">
+        <div class="col-sm-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4 p-md-5 rounded-4 category-card" data-aos="fade-up" data-aos-delay="600">
             <i class="bi bi-truck display-1 text-primary mb-3"></i>
             <h3 class="fw-bold">Emergency</h3>
             <p class="text-muted mb-3">EMS, first aid & emergency response gear</p>
             <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 fs-6 fw-normal">22 items</span>
-            <a href="products.html" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
+            <a href="products.html?category=emergency" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card border-0 shadow-sm h-100 text-center p-5 rounded-4 category-card">
+        <div class="col-sm-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4 p-md-5 rounded-4 category-card" data-aos="fade-up" data-aos-delay="700">
             <i class="bi bi-bandaid display-1 text-primary mb-3"></i>
             <h3 class="fw-bold">Orthopedic</h3>
             <p class="text-muted mb-3">Orthopedic supports & rehabilitation aids</p>
             <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 fs-6 fw-normal">31 items</span>
-            <a href="products.html" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
+            <a href="products.html?category=orthopedic" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card border-0 shadow-sm h-100 text-center p-5 rounded-4 category-card">
+        <div class="col-sm-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 text-center p-4 p-md-5 rounded-4 category-card" data-aos="fade-up" data-aos-delay="800">
             <i class="bi bi-cpu display-1 text-primary mb-3"></i>
             <h3 class="fw-bold">Neurology</h3>
             <p class="text-muted mb-3">Neurological diagnostic & monitoring devices</p>
             <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 fs-6 fw-normal">19 items</span>
-            <a href="products.html" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
+            <a href="products.html?category=neurology" class="btn btn-primary rounded-pill px-4 mt-auto">View Products</a>
           </div>
         </div>
       </div>
@@ -164,9 +172,9 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 text-center">
-          <h3 class="text-white mb-2">Subscribe to Our Newsletter</h3>
-          <p class="text-white-50 mb-4">Get the latest updates on new products and exclusive offers.</p>
-          <form class="newsletter-form d-flex gap-2">
+          <h3 class="text-white mb-2" data-aos="fade-up">Subscribe to Our Newsletter</h3>
+          <p class="text-white-50 mb-4" data-aos="fade-up" data-aos-delay="50">Get the latest updates on new products and exclusive offers.</p>
+          <form class="newsletter-form d-flex gap-2" data-aos="fade-up" data-aos-delay="100">
             <input type="email" class="form-control form-control-lg rounded-pill" placeholder="Enter your email address" required>
             <button type="submit" class="btn btn-warning rounded-pill px-4 flex-shrink-0">Subscribe</button>
           </form>
@@ -180,19 +188,19 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-lg-4">
-          <a class="navbar-brand d-flex align-items-center text-white mb-3" href="index.html">
+          <a class="navbar-brand d-flex align-items-center text-white mb-3" href="index.html" data-aos="fade-up">
             <img src="images/logo.webp" alt="MediStore" height="36">
           </a>
           <p class="text-white-50 small">Your trusted partner for premium medical equipment and healthcare solutions. Serving hospitals, clinics, and healthcare facilities worldwide.</p>
           <div class="footer-social">
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-twitter-x"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-linkedin"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
           </div>
         </div>
         <div class="col-6 col-lg-2">
-          <h6 class="text-white mb-3">Quick Links</h6>
+          <h6 class="text-white mb-3" data-aos="fade-up">Quick Links</h6>
           <ul class="list-unstyled footer-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
@@ -202,17 +210,17 @@
           </ul>
         </div>
         <div class="col-6 col-lg-2">
-          <h6 class="text-white mb-3">Categories</h6>
+          <h6 class="text-white mb-3" data-aos="fade-up">Categories</h6>
           <ul class="list-unstyled footer-links">
-            <li><a href="products.html">Cardiology</a></li>
-            <li><a href="products.html">Respiratory</a></li>
-            <li><a href="products.html">Diagnostic</a></li>
-            <li><a href="products.html">Surgical</a></li>
-            <li><a href="products.html">Patient Care</a></li>
+            <li><a href="products.html?category=cardiology">Cardiology</a></li>
+            <li><a href="products.html?category=respiratory">Respiratory</a></li>
+            <li><a href="products.html?category=diagnostic">Diagnostic</a></li>
+            <li><a href="products.html?category=surgical">Surgical</a></li>
+            <li><a href="products.html?category=patient-care">Patient Care</a></li>
           </ul>
         </div>
         <div class="col-lg-4">
-          <h6 class="text-white mb-3">Contact Info</h6>
+          <h6 class="text-white mb-3" data-aos="fade-up">Contact Info</h6>
           <ul class="list-unstyled text-white-50">
             <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>123 Healthcare Blvd, Medical City, MC 10001</li>
             <li class="mb-2"><i class="bi bi-telephone me-2"></i>+1 (800) 123-4567</li>
@@ -227,7 +235,7 @@
           <small class="text-white-50">&copy; 2026 MediStore. All rights reserved.</small>
         </div>
         <div class="col-md-4 text-center text-md-end">
-          <small class="text-white-50"><a href="#" class="text-white-50 me-2">Privacy Policy</a> | <a href="#" class="text-white-50 ms-2">Terms of Service</a></small>
+          <small class="text-white-50"><a href="404.html" class="text-white-50 me-2">Privacy Policy</a> | <a href="404.html" class="text-white-50 ms-2">Terms of Service</a></small>
         </div>
       </div>
     </div>

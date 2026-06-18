@@ -1091,11 +1091,16 @@ body {
 
 @media (max-width: 575.98px) {
   .hero-text h1 { font-size: 1.5rem; }
+  .hero-text .hero-buttons .btn { font-size: 0.85rem; padding: 6px 16px !important; }
   .hero-search .form-control { height: 38px; font-size: 0.8rem; padding-left: 16px !important; }
   .hero-search .btn { height: 38px; padding: 0 12px !important; }
   .hero-search .input-group { max-width: 100%; }
   .page-header .hero-search .input-group { max-width: 100%; }
   .product-img { min-height: 120px; }
+  .step-card { padding: 20px 12px; }
+  .step-card .step-icon { width: 60px; height: 60px; font-size: 1.3rem; }
+  .step-card .step-number { width: 24px; height: 24px; font-size: 0.7rem; }
+  .step-card h5 { font-size: 0.9rem; }
 }
 
 ::selection {
@@ -1356,4 +1361,129 @@ body {
 
 @media (min-width: 768px) {
   .mobile-back-btn { display: none !important; }
+}
+
+/* ====== Scroll Animation ====== */
+[data-aos] {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: transform, opacity;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: translateX(0) translateY(0) scale(1);
+}
+
+[data-aos="fade-up"] { transform: translateY(30px); }
+[data-aos="fade-down"] { transform: translateY(-30px); }
+[data-aos="fade-left"] { transform: translateX(-30px); }
+[data-aos="fade-right"] { transform: translateX(30px); }
+[data-aos="zoom-in"] { transform: scale(0.9); }
+[data-aos="zoom-out"] { transform: scale(1.1); }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] { opacity: 1; transform: none !important; transition: none; }
+}
+
+/* ====== Hero Text Animation ====== */
+.hero-text .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+}
+.hero-text.animate-words .word {
+  animation: heroWordFade 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: calc(var(--i) * 0.14s);
+}
+.hero-text.animate-words .hero-badge .word {
+  transform: translateY(-20px);
+  animation-name: heroBadgeFade;
+  animation-duration: 0.6s;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+.hero-text.animate-words p .word {
+  animation-duration: 0.6s;
+  animation-delay: calc(var(--i) * 0.06s);
+}
+.hero-text.animate-words .hero-buttons a .word {
+  animation-duration: 0.5s;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+@keyframes heroWordFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroBadgeFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== Section Title Word Animation ====== */
+.section-title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.section-title.animate-words .word {
+  animation: heroWordFade 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: calc(var(--i) * 0.07s);
+}
+.section-title.animate-words p .word {
+  animation-duration: 0.4s;
+  animation-delay: calc(var(--i) * 0.03s);
+}
+
+/* ====== Loader ====== */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--darker);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.loader-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+}
+.loader-content i {
+  font-size: 2.4rem;
+  color: var(--primary);
+  animation: loaderHeartbeat 1s ease-in-out infinite;
+  z-index: 2;
+}
+.loader-ring {
+  position: absolute;
+  inset: 0;
+  border: 3px solid transparent;
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: loaderSpin 0.8s linear infinite;
+}
+.loader-ring-inner {
+  position: absolute;
+  inset: 10px;
+  border: 3px solid transparent;
+  border-bottom-color: #4da3ff;
+  border-radius: 50%;
+  animation: loaderSpin 0.5s linear infinite reverse;
+}
+@keyframes loaderSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes loaderHeartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.25); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+  60% { transform: scale(1); }
 }

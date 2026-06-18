@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 Page Not Found</title>
+  <link rel="icon" type="image/webp" href="images/logo.webp">
+  <link rel="stylesheet" href="css/404.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+</head>
+<body>
+  <!-- ====== Loader ====== -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-ring"></div>
+      <div class="loader-ring-inner"></div>
+      <i class="bi bi-heart-pulse"></i>
+    </div>
+  </div>
+  <main class="error-section">
+    <section class="error-content">
+      <span class="error-code">404</span>
+      <h1>Oops! Page Not Found</h1>
+      <p>
+        The page you're looking for doesn’t exist or has been moved. Let’s get
+        you back to building something great.
+      </p>
+      <div class="action-buttons">
+        <a href="javascript:history.back()" class="back-btn">Go Back</a>
+        <a href="index.html" class="home-btn">Go to Home</a>
+      </div>
+    
+    </section>
+  </main>
+
+  <script>
+    window.addEventListener('load', function () {
+      var loader = document.getElementById('loader');
+      if (loader) {
+        loader.classList.add('hidden');
+        setTimeout(function () { loader.style.display = 'none'; }, 600);
+      }
+    });
+  </script>
+</body>
+</html>

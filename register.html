@@ -9,48 +9,56 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="section-darker d-flex align-items-center py-5" style="min-height: 100vh;">
+  <!-- ====== Loader ====== -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-ring"></div>
+      <div class="loader-ring-inner"></div>
+      <i class="bi bi-heart-pulse"></i>
+    </div>
+  </div>
 
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-6 col-md-8">
-        <div class="card border-0 shadow-sm rounded-4 p-4 p-lg-5">
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-lg-5" data-aos="fade-up">
           <div class="text-center mb-4">
             <a href="index.html">
-              <img src="images/logo.webp" alt="MediStore" height="45">
+              <img src="images/logo.webp" alt="MediStore" height="45" data-aos="fade-down">
             </a>
           </div>
           <div class="text-center mb-4">
-            <h4 class="fw-bold">Sign Up</h4>
-            <p class="text-muted small">Create your MediStore account to get started</p>
+            <h4 class="fw-bold" data-aos="fade-up" data-aos-delay="50">Sign Up</h4>
+            <p class="text-muted small" data-aos="fade-up" data-aos-delay="100">Create your MediStore account to get started</p>
           </div>
           <form id="registerForm">
             <div class="row g-3">
-              <div class="col-md-6">
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
                 <label for="firstName" class="form-label fw-medium">First Name</label>
                   <input type="text" class="form-control form-control-lg rounded-pill" id="firstName" placeholder="John" maxlength="16" pattern="[A-Za-z\s]+" title="Letters and spaces only" required>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
                 <label for="lastName" class="form-label fw-medium">Last Name</label>
                   <input type="text" class="form-control form-control-lg rounded-pill" id="lastName" placeholder="Doe" maxlength="16" pattern="[A-Za-z\s]+" title="Letters and spaces only" required>
               </div>
             </div>
-            <div class="mb-3 mt-3">
+            <div class="mb-3 mt-3" data-aos="fade-up" data-aos-delay="250">
               <label for="regEmail" class="form-label fw-medium">Email Address</label>
               <input type="email" class="form-control form-control-lg rounded-pill" id="regEmail" placeholder="you@example.com" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3" data-aos="fade-up" data-aos-delay="300">
               <label for="regMobile" class="form-label fw-medium">Mobile Number</label>
               <input type="tel" class="form-control form-control-lg rounded-pill" id="regMobile" placeholder="+1 (555) 123-4567" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3" data-aos="fade-up" data-aos-delay="350">
               <label for="regPassword" class="form-label fw-medium">Password</label>
               <input type="password" class="form-control form-control-lg rounded-pill" id="regPassword" placeholder="Create a strong password" minlength="8" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3" data-aos="fade-up" data-aos-delay="400">
               <label for="confirmPassword" class="form-label fw-medium">Confirm Password</label>
               <input type="password" class="form-control form-control-lg rounded-pill" id="confirmPassword" placeholder="Confirm your password" minlength="8" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3" data-aos="fade-up" data-aos-delay="450">
               <label class="form-label fw-medium">Register as</label>
               <label class="role-toggle w-100">
                 <input type="checkbox" id="regRole" checked>
@@ -59,20 +67,20 @@
                 <span class="toggle-option">Admin</span>
               </label>
             </div>
-            <div class="mb-4">
+            <div class="mb-4" data-aos="fade-up" data-aos-delay="500">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="terms" required>
                 <label class="form-check-label small" for="terms">I agree to the <a href="#" class="text-primary text-decoration-none">Terms of Service</a> and <a href="#" class="text-primary text-decoration-none">Privacy Policy</a></label>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill">Create Account</button>
+            <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill" data-aos="fade-up" data-aos-delay="550">Create Account</button>
           </form>
           <div class="text-center mt-4">
-            <p class="small text-muted mb-0">Already have an account? <a href="login.html" class="text-primary text-decoration-none fw-medium">Sign in</a></p>
+            <p class="small text-muted mb-0" data-aos="fade-up" data-aos-delay="600">Already have an account? <a href="login.html" class="text-primary text-decoration-none fw-medium">Sign in</a></p>
           </div>
           <hr class="my-4">
           <div class="text-center">
-            <a href="index.html" class="btn btn-outline-primary rounded-pill px-4"><i class="bi bi-house-door me-1"></i>Back to Home</a>
+            <a href="index.html" class="btn btn-outline-primary rounded-pill px-4" data-aos="fade-up" data-aos-delay="650"><i class="bi bi-house-door me-1"></i>Back to Home</a>
           </div>
         </div>
       </div>

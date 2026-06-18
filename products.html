@@ -9,6 +9,14 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- ====== Loader ====== -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-ring"></div>
+      <div class="loader-ring-inner"></div>
+      <i class="bi bi-heart-pulse"></i>
+    </div>
+  </div>
 
   <!-- ====== Top Bar ====== -->
   <div class="top-bar d-none d-lg-block">
@@ -18,10 +26,10 @@
         <span class="ms-3"><i class="bi bi-envelope"></i> info@medistore.com</span>
       </div>
       <div class="top-bar-social">
-        <a href="#"><i class="bi bi-facebook"></i></a>
-        <a href="#"><i class="bi bi-twitter-x"></i></a>
-        <a href="#"><i class="bi bi-linkedin"></i></a>
-        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="404.html"><i class="bi bi-facebook"></i></a>
+        <a href="404.html"><i class="bi bi-twitter-x"></i></a>
+        <a href="404.html"><i class="bi bi-linkedin"></i></a>
+        <a href="404.html"><i class="bi bi-instagram"></i></a>
       </div>
     </div>
   </div>
@@ -45,7 +53,7 @@
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
         <div class="d-flex align-items-center gap-3">
-          <a href="#" class="nav-icon position-relative">
+          <a href="cart.html" class="nav-icon position-relative">
             <i class="bi bi-cart3"></i>
             <span class="cart-badge">3</span>
           </a>
@@ -59,10 +67,10 @@
   <!-- ====== Page Header ====== -->
   <section class="page-header page-header-bg-products d-flex align-items-center">
     <div class="container text-center">
-      <span class="hero-badge">Products</span>
-      <h1 class="text-white fw-bold display-4 mb-3">Our Products</h1>
-      <p class="text-white-50 fs-5 mb-0 mx-auto" style="max-width: 600px;">Browse our complete range of medical equipment and supplies</p>
-      <form class="hero-search mt-4 mx-auto" style="max-width: 500px;">
+      <span class="hero-badge" data-aos="fade-down">Products</span>
+      <h1 class="text-white fw-bold display-4 mb-3" data-aos="fade-up">Our Products</h1>
+      <p class="text-white-50 fs-5 mb-0 mx-auto" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="50">Browse our complete range of medical equipment and supplies</p>
+      <form class="hero-search mt-4 mx-auto" style="max-width: 500px;" data-aos="fade-up" data-aos-delay="100">
         <div class="input-group rounded-pill overflow-hidden bg-white shadow">
           <input type="text" class="form-control border-0 ps-4" placeholder="Search products..." aria-label="Search">
           <button class="btn btn-primary px-4" type="submit"><i class="bi bi-search"></i></button>
@@ -76,15 +84,15 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8">
-          <div class="d-flex flex-wrap justify-content-center gap-2" id="productFilters">
-            <button class="btn btn-primary rounded-pill px-4 active" data-filter="all">All</button>
-            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="cardiology">Cardiology</button>
-            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="respiratory">Respiratory</button>
-            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="diagnostic">Diagnostic</button>
-            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="surgical">Surgical</button>
-            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="patient care">Patient Care</button>
-            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="infection control">Infection Control</button>
-            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="lab & diagnostic">Lab & Diagnostic</button>
+          <div class="d-flex flex-wrap justify-content-center gap-2" id="productFilters" data-aos="fade-up" data-aos-delay="150">
+            <button class="btn btn-primary rounded-pill px-4 active" data-filter="all" data-aos="fade-up" data-aos-delay="0">All</button>
+            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="cardiology" data-aos="fade-up" data-aos-delay="50">Cardiology</button>
+            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="respiratory" data-aos="fade-up" data-aos-delay="100">Respiratory</button>
+            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="diagnostic" data-aos="fade-up" data-aos-delay="150">Diagnostic</button>
+            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="surgical" data-aos="fade-up" data-aos-delay="200">Surgical</button>
+            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="patient care" data-aos="fade-up" data-aos-delay="250">Patient Care</button>
+            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="infection control" data-aos="fade-up" data-aos-delay="300">Infection Control</button>
+            <button class="btn btn-outline-primary rounded-pill px-4" data-filter="lab & diagnostic" data-aos="fade-up" data-aos-delay="350">Lab & Diagnostic</button>
           </div>
         </div>
       </div>
@@ -95,10 +103,10 @@
   <!-- ====== Products Grid ====== -->
   <section class="section-padding section-darker">
     <div class="container">
-      <div class="row g-4" id="productsRow">
+      <div class="row g-4" id="productsRow" data-aos="fade-up" data-aos-delay="200">
 
         <!-- Product 1 - ECG Monitor Pro 3000 -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="0">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-1">
             <div class="product-img">
               <img src="images/product-1.webp" alt="ECG Monitor Pro 3000" class="product-img-el">
@@ -129,7 +137,7 @@
         </div>
 
         <!-- Product 2 - Ventilator VentiCare X1 -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-2">
             <div class="product-img">
               <img src="images/product-2.webp" alt="Ventilator VentiCare X1" class="product-img-el">
@@ -160,7 +168,7 @@
         </div>
 
         <!-- Product 3 - Blood Analyzer HemaScan -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-3">
             <div class="product-img">
               <img src="images/product-3.webp" alt="Blood Analyzer HemaScan" class="product-img-el">
@@ -191,7 +199,7 @@
         </div>
 
         <!-- Product 4 - Hospital Bed CarePlus 500 -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="300">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-4">
             <div class="product-img">
               <img src="images/product-4.webp" alt="Hospital Bed CarePlus 500" class="product-img-el">
@@ -222,7 +230,7 @@
         </div>
 
         <!-- Product 5 - Surgical Laser Kit -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="400">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-5">
             <div class="product-img">
               <img src="images/product-5.webp" alt="Surgical Laser Kit" class="product-img-el">
@@ -253,7 +261,7 @@
         </div>
 
         <!-- Product 6 - MRI Scanner Vision 2000 -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="500">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-6">
             <div class="product-img">
               <img src="images/product-6.webp" alt="MRI Scanner Vision 2000" class="product-img-el">
@@ -284,7 +292,7 @@
         </div>
 
         <!-- Product 7 - Defibrillator D-Fib XR -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="600">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-7">
             <div class="product-img">
               <img src="images/product-7.webp" alt="Defibrillator D-Fib XR" class="product-img-el">
@@ -315,7 +323,7 @@
         </div>
 
         <!-- Product 8 - Oxygen Concentrator OxyFlow -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="700">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-8">
             <div class="product-img">
               <img src="images/product-8.webp" alt="Oxygen Concentrator OxyFlow" class="product-img-el">
@@ -346,7 +354,7 @@
         </div>
 
         <!-- Product 9 - Autoclave Sterilizer 4000 -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="800">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-9">
             <div class="product-img">
               <img src="images/product-9.webp" alt="Autoclave Sterilizer 4000" class="product-img-el">
@@ -377,7 +385,7 @@
         </div>
 
         <!-- Product 10 - Patient Monitor VitalView -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="900">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-10">
             <div class="product-img">
               <img src="images/product-10.webp" alt="Patient Monitor VitalView" class="product-img-el">
@@ -410,7 +418,7 @@
 
 
         <!-- Product 11 - Ultrasound System SonoMax -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-11">
             <div class="product-img">
               <img src="images/product-11.webp" alt="Ultrasound System SonoMax" class="product-img-el">
@@ -441,7 +449,7 @@
         </div>
 
         <!-- Product 12 - Operating Table SurgiLift -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="1100">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-12">
             <div class="product-img">
               <img src="images/product-12.webp" alt="Operating Table SurgiLift" class="product-img-el">
@@ -472,7 +480,7 @@
         </div>
 
         <!-- Product 13 - X-Ray Machine RadiView 5000 -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-13">
             <div class="product-img">
               <img src="images/product-13.webp" alt="X-Ray Machine RadiView 5000" class="product-img-el">
@@ -503,7 +511,7 @@
         </div>
 
         <!-- Product 14 - CPAP Machine BreathEasy -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="1300">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-14">
             <div class="product-img">
               <img src="images/product-14.webp" alt="CPAP Machine BreathEasy" class="product-img-el">
@@ -534,7 +542,7 @@
         </div>
 
         <!-- Product 15 - Heart Rate Monitor PulseCheck -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="1400">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-15">
             <div class="product-img">
               <img src="images/product-15.webp" alt="Heart Rate Monitor PulseCheck" class="product-img-el">
@@ -565,7 +573,7 @@
         </div>
 
         <!-- Product 16 - Infusion Pump MediFlow -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="1500">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-16">
             <div class="product-img">
               <img src="images/product-16.webp" alt="Infusion Pump MediFlow" class="product-img-el">
@@ -596,7 +604,7 @@
         </div>
 
         <!-- Product 17 - Endoscopy Kit ScopePro -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="1600">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-17">
             <div class="product-img">
               <img src="images/product-17.webp" alt="Endoscopy Kit ScopePro" class="product-img-el">
@@ -627,7 +635,7 @@
         </div>
 
         <!-- Product 18 - CT Scanner TomoScan 3000 -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="1700">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-18">
             <div class="product-img">
               <img src="images/product-18.webp" alt="CT Scanner TomoScan 3000" class="product-img-el">
@@ -658,7 +666,7 @@
         </div>
 
         <!-- Product 19 - ECG Holter Monitor CardioTrack -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="1800">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-19">
             <div class="product-img">
               <img src="images/product-19.webp" alt="ECG Holter Monitor CardioTrack" class="product-img-el">
@@ -689,7 +697,7 @@
         </div>
 
         <!-- Product 20 - Nebulizer AeroMist -->
-        <div class="col-6 col-sm-4 col-lg-3">
+        <div class="col-6 col-sm-4 col-lg-3" data-aos="fade-up" data-aos-delay="1900">
           <div class="product-card card border-0 shadow-sm h-100" id="prod-20">
             <div class="product-img">
               <img src="images/product-20.webp" alt="Nebulizer AeroMist" class="product-img-el">
@@ -7097,7 +7105,7 @@
       </div>
 
       <!-- ====== Products Pagination ====== -->
-      <nav class="mt-5" aria-label="Products pagination">
+      <nav class="mt-5" aria-label="Products pagination" data-aos="fade-up" data-aos-delay="300">
         <ul class="pagination justify-content-center flex-wrap gap-1" id="paginationControls"></ul>
       </nav>
 
@@ -7109,9 +7117,9 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 text-center">
-          <h3 class="text-white mb-2">Subscribe to Our Newsletter</h3>
-          <p class="text-white-50 mb-4">Get the latest updates on new products and exclusive offers.</p>
-          <form class="newsletter-form d-flex gap-2">
+          <h3 class="text-white mb-2" data-aos="fade-up">Subscribe to Our Newsletter</h3>
+          <p class="text-white-50 mb-4" data-aos="fade-up" data-aos-delay="50">Get the latest updates on new products and exclusive offers.</p>
+          <form class="newsletter-form d-flex gap-2" data-aos="fade-up" data-aos-delay="100">
             <input type="email" class="form-control form-control-lg rounded-pill" placeholder="Enter your email address" required>
             <button type="submit" class="btn btn-warning rounded-pill px-4 flex-shrink-0">Subscribe</button>
           </form>
@@ -7124,19 +7132,19 @@
   <footer class="footer pt-5 pb-3">
     <div class="container">
       <div class="row g-4">
-        <div class="col-lg-4">
+        <div class="col-lg-4" data-aos="fade-up">
           <a class="navbar-brand d-flex align-items-center text-white mb-3" href="index.html">
             <img src="images/logo.webp" alt="MediStore" height="36">
           </a>
           <p class="text-white-50 small">Your trusted partner for premium medical equipment and healthcare solutions. Serving hospitals, clinics, and healthcare facilities worldwide.</p>
           <div class="footer-social">
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-twitter-x"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-linkedin"></i></a>
+            <a href="404.html" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
           </div>
         </div>
-        <div class="col-6 col-lg-2">
+        <div class="col-6 col-lg-2" data-aos="fade-up">
           <h6 class="text-white mb-3">Quick Links</h6>
           <ul class="list-unstyled footer-links">
             <li><a href="index.html">Home</a></li>
@@ -7146,14 +7154,14 @@
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-        <div class="col-6 col-lg-2">
+        <div class="col-6 col-lg-2" data-aos="fade-up">
           <h6 class="text-white mb-3">Categories</h6>
           <ul class="list-unstyled footer-links">
-            <li><a href="categories.html">Cardiology</a></li>
-            <li><a href="categories.html">Respiratory</a></li>
-            <li><a href="categories.html">Diagnostic</a></li>
-            <li><a href="categories.html">Surgical</a></li>
-            <li><a href="categories.html">Patient Care</a></li>
+            <li><a href="products.html?category=cardiology">Cardiology</a></li>
+            <li><a href="products.html?category=respiratory">Respiratory</a></li>
+            <li><a href="products.html?category=diagnostic">Diagnostic</a></li>
+            <li><a href="products.html?category=surgical">Surgical</a></li>
+            <li><a href="products.html?category=patient-care">Patient Care</a></li>
           </ul>
         </div>
         <div class="col-lg-4">
@@ -7172,7 +7180,7 @@
           <small class="text-white-50">&copy; 2026 MediStore. All rights reserved.</small>
         </div>
         <div class="col-md-4 text-center text-md-end">
-          <small class="text-white-50"><a href="#" class="text-white-50 me-2">Privacy Policy</a> | <a href="#" class="text-white-50 ms-2">Terms of Service</a></small>
+          <small class="text-white-50"><a href="404.html" class="text-white-50 me-2">Privacy Policy</a> | <a href="404.html" class="text-white-50 ms-2">Terms of Service</a></small>
         </div>
       </div>
     </div>
