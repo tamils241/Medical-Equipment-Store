@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var users = getUsers();
       var found = null;
       for (var i = 0; i < users.length; i++) {
-        if (users[i].email === email && users[i].password === password) {
+        if (users[i].email.toLowerCase() === email.toLowerCase() && users[i].password === password) {
           found = users[i]; break;
         }
       }
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       var users = getUsers();
       for (var i = 0; i < users.length; i++) {
-        if (users[i].email === email) { alert('Email already registered.'); return; }
+        if (users[i].email.toLowerCase() === email.toLowerCase()) { alert('Email already registered.'); return; }
       }
 
       var regRole = document.getElementById('regRole').checked ? 'user' : 'admin';
@@ -119,16 +119,13 @@ document.addEventListener('DOMContentLoaded', function () {
       };
       users.push(newUser);
       saveUsers(users);
-      setSession(newUser);
-      if (regRole === 'admin') { window.location.href = 'admin-dashboard.html'; }
-      else { window.location.href = 'user-dashboard.html'; }
+      alert('Account created successfully! Please sign in.');
+      window.location.href = 'login.html';
     });
   }
 
   // ====== Redirect logged-in users away from login/register ======
-  var isLoginPage = document.getElementById('loginForm');
-  var isRegisterPage = document.getElementById('registerForm');
-  if ((isLoginPage || isRegisterPage) && isLoggedIn()) {
+  if (document.getElementById('loginForm') && isLoggedIn()) {
     var u = getCurrentUser();
     window.location.href = u.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
   }
