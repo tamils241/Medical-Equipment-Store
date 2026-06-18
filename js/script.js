@@ -37,14 +37,19 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!existing) {
         navRight.insertAdjacentHTML('beforeend', dropdownHtml);
       }
-      var logoutBtn = document.getElementById('logoutBtn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          clearSession();
-          location.reload();
-        });
-      }
+      
+      // Select all logout buttons safely in case there are multiple 
+      var logoutBtns = document.querySelectorAll('#logoutBtn, .logout-btn');
+      logoutBtns.forEach(function(btn) {
+        if (!btn.hasAttribute('data-bound')) {
+          btn.setAttribute('data-bound', 'true');
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            clearSession();
+            window.location.href = 'login.html';
+          });
+        }
+      });
     } else {
       var btns = navRight.querySelectorAll('a[href="login.html"], a[href="register.html"]');
       btns.forEach(function (b) { b.style.display = ''; });
@@ -61,10 +66,15 @@ document.addEventListener('DOMContentLoaded', function () {
   if (loginForm) {
     loginForm.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      var emailEl = document.getElementById('email');
+      var passwordEl = document.getElementById('password');
+      if (!emailEl || !passwordEl) return; // Prevent crashes if HTML inputs are missing
+
       var roleToggle = document.getElementById('loginRole');
       var role = roleToggle ? (roleToggle.checked ? 'user' : 'admin') : 'user';
-      var email = document.getElementById('email').value.trim();
-      var password = document.getElementById('password').value;
+      var email = emailEl.value.trim();
+      var password = passwordEl.value;
 
       if (!email || !password || !password.trim()) {
         alert('Please fill in all required fields.');
@@ -137,14 +147,24 @@ document.addEventListener('DOMContentLoaded', function () {
   if (registerForm) {
     registerForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var firstName = document.getElementById('firstName').value.trim();
-      var lastName = document.getElementById('lastName').value.trim();
+
+      var fnEl = document.getElementById('firstName');
+      var lnEl = document.getElementById('lastName');
+      var emEl = document.getElementById('regEmail');
+      var pwEl = document.getElementById('regPassword');
+      var cpwEl = document.getElementById('confirmPassword');
+      var termsEl = document.getElementById('terms');
+      if (!fnEl || !lnEl || !emEl || !pwEl || !cpwEl || !termsEl) return;
+
+      var firstName = fnEl.value.trim();
+      var lastName = lnEl.value.trim();
       var fullName = firstName + ' ' + lastName;
-      var email = document.getElementById('regEmail').value.trim();
-      var password = document.getElementById('regPassword').value;
-      var confirmPassword = document.getElementById('confirmPassword').value;
-      var terms = document.getElementById('terms').checked;
-      var role = document.getElementById('regRole').checked ? 'user' : 'admin';
+      var email = emEl.value.trim();
+      var password = pwEl.value;
+      var confirmPassword = cpwEl.value;
+      var terms = termsEl.checked;
+      var roleToggle = document.getElementById('regRole');
+      var role = roleToggle ? (roleToggle.checked ? 'user' : 'admin') : 'user';
 
       if (!role || !firstName || !lastName || !email || !password || !confirmPassword) {
         alert('Please fill in all required fields.');
@@ -250,16 +270,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (emailEl) emailEl.textContent = user.email;
   }
 
-  // ====== Logout button on dashboard pages ======
-  var dashLogout = document.getElementById('logoutBtn');
-  if (dashLogout) {
-    dashLogout.addEventListener('click', function (e) {
-      e.preventDefault();
-      clearSession();
-      window.location.href = 'login.html';
-    });
-  }
-
   // ====== Sticky Navbar on Scroll ======
   const navbar = document.querySelector('.sticky-nav');
   const backToTop = document.getElementById('backToTop');
@@ -305,27 +315,39 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ====== Search Forms ======
+  document.querySelectorAll('.hero-search').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const input = this.querySelector('input');
+      if (input && input.value.trim()) {
+        alert('Search results for: ' + input.value.trim());
+        input.value = '';
+      }
+    });
+  });
+
   // ====== Newsletter Form ======
-  const newsletterForm = document.querySelector('.newsletter-form');
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function (e) {
+  document.querySelectorAll('.newsletter-form').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
       const input = this.querySelector('input[type="email"]');
-      if (input.value.trim()) {
-        const btn = this.querySelector('button');
-        const original = btn.textContent;
+      const btn = this.querySelector('button');
+      if (input && btn && input.value.trim()) {
+        const originalText = btn.textContent;
+        const originalClasses = btn.className;
+        
         btn.textContent = 'Subscribed!';
-        btn.classList.remove('btn-warning');
-        btn.classList.add('btn-success');
+        btn.className = 'btn btn-success rounded-pill px-4 flex-shrink-0';
         input.value = '';
+        
         setTimeout(function () {
-          btn.textContent = original;
-          btn.classList.remove('btn-success');
-          btn.classList.add('btn-warning');
+          btn.textContent = originalText;
+          btn.className = originalClasses;
         }, 3000);
       }
     });
-  }
+  });
 
   // ====== Cart Functions ======
   function getCart() {
@@ -337,11 +359,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updateCartBadge() {
-    var badge = document.querySelector('.cart-badge');
-    if (!badge) return;
+    var badges = document.querySelectorAll('.cart-badge');
+    if (badges.length === 0) return;
     var cart = getCart();
     var count = cart.reduce(function (sum, item) { return sum + (item.qty || 1); }, 0);
-    badge.textContent = count;
+    badges.forEach(function (badge) { badge.textContent = count; });
   }
 
   function addToCart(product) {
@@ -366,9 +388,10 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       var card = this.closest('.product-card');
       var img = card.querySelector('.product-img-el');
-      var name = card.querySelector('h6').textContent.trim();
+      var titleEl = card.querySelector('h6');
+      var name = titleEl ? titleEl.textContent.trim() : 'Product';
       var priceEl = card.querySelector('.price .fw-bold');
-      var price = parseFloat(priceEl.textContent.replace(/[^0-9.]/g, '')) || 0;
+      var price = priceEl ? (parseFloat(priceEl.textContent.replace(/[^0-9.]/g, '')) || 0) : 0;
       var id = card.getAttribute('id') || name.replace(/\s+/g, '-').toLowerCase();
       var image = img ? img.getAttribute('src') : '';
 
@@ -379,11 +402,11 @@ document.addEventListener('DOMContentLoaded', function () {
       this.classList.remove('btn-primary');
       this.classList.add('btn-success');
 
-      var badge = document.querySelector('.cart-badge');
-      if (badge) {
+      var badges = document.querySelectorAll('.cart-badge');
+      badges.forEach(function (badge) {
         badge.style.transform = 'scale(1.3)';
         setTimeout(function () { badge.style.transform = 'scale(1)'; }, 200);
-      }
+      });
 
       setTimeout(function () {
         btn.textContent = original;
@@ -408,9 +431,12 @@ document.addEventListener('DOMContentLoaded', function () {
       if (cart.length === 0) {
         if (emptyEl) emptyEl.style.display = '';
         cartContainer.innerHTML = '';
-        document.getElementById('cartSubtotal').textContent = '$0';
-        document.getElementById('cartShipping').textContent = '$0';
-        document.getElementById('cartTotal').textContent = '$0';
+        var st0 = document.getElementById('cartSubtotal');
+        var sh0 = document.getElementById('cartShipping');
+        var ct0 = document.getElementById('cartTotal');
+        if (st0) st0.textContent = '$0';
+        if (sh0) sh0.textContent = '$0';
+        if (ct0) ct0.textContent = '$0';
         return;
       }
 
@@ -456,9 +482,13 @@ document.addEventListener('DOMContentLoaded', function () {
       var shipping = subtotal > 100 ? 0 : 15;
       var total = subtotal + shipping;
 
-      document.getElementById('cartSubtotal').textContent = '$' + subtotal.toFixed(2);
-      document.getElementById('cartShipping').textContent = shipping === 0 ? 'Free' : '$' + shipping.toFixed(2);
-      document.getElementById('cartTotal').textContent = '$' + total.toFixed(2);
+      var st = document.getElementById('cartSubtotal');
+      var sh = document.getElementById('cartShipping');
+      var ct = document.getElementById('cartTotal');
+
+      if (st) st.textContent = '$' + subtotal.toFixed(2);
+      if (sh) sh.textContent = shipping === 0 ? 'Free' : '$' + shipping.toFixed(2);
+      if (ct) ct.textContent = '$' + total.toFixed(2);
 
       // Qty minus
       cartContainer.querySelectorAll('.cart-qty-minus').forEach(function (btn) {
@@ -502,23 +532,30 @@ document.addEventListener('DOMContentLoaded', function () {
     renderCart();
 
     // Clear cart
-    document.getElementById('clearCartBtn').addEventListener('click', function () {
-      if (confirm('Clear all items from your cart?')) {
-        saveCart([]);
-        renderCart();
-        updateCartBadge();
-      }
-    });
+    var clearCartBtn = document.getElementById('clearCartBtn');
+    if (clearCartBtn) {
+      clearCartBtn.addEventListener('click', function () {
+        if (confirm('Clear all items from your cart?')) {
+          saveCart([]);
+          renderCart();
+          updateCartBadge();
+        }
+      });
+    }
 
     // Checkout
-    document.getElementById('checkoutBtn').addEventListener('click', function () {
-      var cart = getCart();
-      if (cart.length === 0) {
-        alert('Your cart is empty.');
-        return;
-      }
-      alert('Thank you for your order! Total: ' + document.getElementById('cartTotal').textContent);
-    });
+    var checkoutBtn = document.getElementById('checkoutBtn');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', function () {
+        var cart = getCart();
+        if (cart.length === 0) {
+          alert('Your cart is empty.');
+          return;
+        }
+        var ct = document.getElementById('cartTotal');
+        alert('Thank you for your order! Total: ' + (ct ? ct.textContent : '$0'));
+      });
+    }
   }
 
   // ====== Wishlist Heart Toggle ======
@@ -526,8 +563,10 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       const icon = this.querySelector('i');
-      icon.classList.toggle('bi-heart');
-      icon.classList.toggle('bi-heart-fill');
+      if (icon) {
+        icon.classList.toggle('bi-heart');
+        icon.classList.toggle('bi-heart-fill');
+      }
       this.classList.toggle('text-danger');
     });
   });
@@ -747,7 +786,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ====== Search Icon Click ======
   const searchIcon = document.querySelector('.nav-icon .bi-search');
-  if (searchIcon) {
+  if (searchIcon && searchIcon.parentElement) {
     searchIcon.parentElement.addEventListener('click', function (e) {
       e.preventDefault();
       const query = prompt('Search medical equipment...');
