@@ -97,12 +97,12 @@ document.addEventListener('DOMContentLoaded', function () {
       var lastName = document.getElementById('lastName').value.trim();
       var email = document.getElementById('regEmail').value.trim();
       var password = document.getElementById('regPassword').value.trim();
-      var confirm = document.getElementById('confirmPassword').value.trim();
+      var confirmPw = document.getElementById('confirmPassword').value.trim();
 
       if (!firstName) { alert('Please enter your first name.'); return; }
       if (!lastName) { alert('Please enter your last name.'); return; }
       if (password.length < 8) { alert('Password must be at least 8 characters.'); return; }
-      if (password !== confirm) { alert('Passwords do not match.'); return; }
+      if (password !== confirmPw) { alert('Passwords do not match.'); return; }
 
       var users = getUsers();
       for (var i = 0; i < users.length; i++) {
@@ -177,23 +177,29 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', function () {
     const scrollY = window.scrollY;
 
-    if (scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+    if (navbar) {
+      if (scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     }
 
-    if (scrollY > 400) {
-      backToTop.classList.add('show');
-    } else {
-      backToTop.classList.remove('show');
+    if (backToTop) {
+      if (scrollY > 400) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
     }
   });
 
   // ====== Back to Top ======
-  backToTop.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  if (backToTop) {
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   // ====== Smooth Scroll for Nav Links ======
   document.querySelectorAll('.nav-link').forEach(function (link) {
@@ -471,7 +477,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     }, { threshold: 0.3 });
-    observer.observe(statsSection.closest('.row'));
+    var statsRow = statsSection.closest('.row');
+    if (statsRow) observer.observe(statsRow);
   }
 
   // ====== Product Category Filter & Pagination ======
