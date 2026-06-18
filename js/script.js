@@ -53,26 +53,67 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // ====== Login Form ======
-  var loginForm = document.querySelector('#loginForm');
+  // =========================================
+  // 8. LOGIN FORM HANDLER
+  // =========================================
+  var loginForm = document.getElementById('loginForm');
+
   if (loginForm) {
     loginForm.addEventListener('submit', function (e) {
       e.preventDefault();
+      var roleToggle = document.getElementById('loginRole');
+      var role = roleToggle ? (roleToggle.checked ? 'user' : 'admin') : 'user';
       var email = document.getElementById('email').value.trim();
-      var password = document.getElementById('password').value.trim();
-      var users = getUsers();
-      var found = null;
-      for (var i = 0; i < users.length; i++) {
-        if (users[i].email.toLowerCase() === email.toLowerCase() && users[i].password === password) {
-          found = users[i]; break;
-        }
+      var password = document.getElementById('password').value;
+
+      if (!email || !password || !password.trim()) {
+        alert('Please fill in all required fields.');
+        return;
       }
-      if (found) {
-        setSession(found);
-        if (found.role === 'admin') { window.location.href = 'admin-dashboard.html'; }
-        else { window.location.href = 'user-dashboard.html'; }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      var users = getUsers();
+      var emailLower = email.toLowerCase();
+      var user = users.find(function (u) { return u.email.toLowerCase() === emailLower; });
+
+      if (!user) {
+        var name = email.split('@')[0];
+        var newUser = { name: name, email: email, password: password, role: role, created: new Date().toISOString() };
+        users.push(newUser);
+        saveUsers(users);
+        setSession(newUser);
+        
+        alert('Welcome! Your account has been created automatically.');
+        if (role === 'admin') {
+          window.location.href = 'admin-dashboard.html';
+        } else {
+          window.location.href = 'user-dashboard.html';
+        }
+        return;
+      }
+
+      if (user.password !== password) {
+        alert('Incorrect password. Please try again.');
+        return;
+      }
+
+      if (user.role !== role) {
+        alert('Role mismatch: This account is registered as a ' + user.role + '. Please change the "Sign in as" toggle to match.');
+        return;
+      }
+
+      setSession(user);
+
+      alert('Login successful! Welcome back to MediStore.');
+
+      if (user.role === 'admin') {
+        window.location.href = 'admin-dashboard.html';
       } else {
-        alert('Invalid email or password.');
+        window.location.href = 'user-dashboard.html';
       }
     });
   }
@@ -88,38 +129,64 @@ document.addEventListener('DOMContentLoaded', function () {
     if (el) enforceNameInput(el);
   });
 
-  // ====== Register Form ======
-  var registerForm = document.querySelector('#registerForm');
+  // =========================================
+  // 9. REGISTER FORM HANDLER
+  // =========================================
+  var registerForm = document.getElementById('registerForm');
+
   if (registerForm) {
     registerForm.addEventListener('submit', function (e) {
       e.preventDefault();
       var firstName = document.getElementById('firstName').value.trim();
       var lastName = document.getElementById('lastName').value.trim();
+      var fullName = firstName + ' ' + lastName;
       var email = document.getElementById('regEmail').value.trim();
-      var password = document.getElementById('regPassword').value.trim();
-      var confirmPw = document.getElementById('confirmPassword').value.trim();
+      var password = document.getElementById('regPassword').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+      var terms = document.getElementById('terms').checked;
+      var role = document.getElementById('regRole').checked ? 'user' : 'admin';
 
-      if (!firstName) { alert('Please enter your first name.'); return; }
-      if (!lastName) { alert('Please enter your last name.'); return; }
-      if (password.length < 8) { alert('Password must be at least 8 characters.'); return; }
-      if (password !== confirmPw) { alert('Passwords do not match.'); return; }
-
-      var users = getUsers();
-      for (var i = 0; i < users.length; i++) {
-        if (users[i].email.toLowerCase() === email.toLowerCase()) { alert('Email already registered.'); return; }
+      if (!role || !firstName || !lastName || !email || !password || !confirmPassword) {
+        alert('Please fill in all required fields.');
+        return;
       }
 
-      var regRole = document.getElementById('regRole').checked ? 'user' : 'admin';
-      var newUser = {
-        name: firstName + ' ' + lastName,
-        email: email,
-        password: password,
-        role: regRole,
-        created: new Date().toISOString()
-      };
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      if (password.length < 8) {
+        alert('Password must be at least 8 characters long.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+      }
+
+      if (!terms) {
+        alert('Please agree to the Terms of Service and Privacy Policy.');
+        return;
+      }
+
+      var users = getUsers();
+
+      if (users.some(function (u) { return u.email.toLowerCase() === email.toLowerCase(); })) {
+        alert('An account with this email already exists. Please login instead.');
+        return;
+      }
+
+      var newUser = { name: fullName, email: email, password: password, role: role, created: new Date().toISOString() };
       users.push(newUser);
       saveUsers(users);
+
+      // Clear any active session so the user isn't immediately auto-redirected from login.html
+      clearSession();
+
       alert('Account created successfully! Please sign in.');
+
       window.location.href = 'login.html';
     });
   }
@@ -128,6 +195,13 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('loginForm') && isLoggedIn()) {
     var u = getCurrentUser();
     window.location.href = u.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
+  }
+
+  // If a logged-in user visits the Create Account page, log them out and redirect to sign in
+  if (document.getElementById('registerForm') && isLoggedIn()) {
+    clearSession();
+    alert('You have been signed out to create a new account.');
+    window.location.replace('login.html');
   }
 
   // ====== Role toggle active class sync ======
@@ -139,6 +213,25 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+
+  // ====== Cleanly clear session when clicking bottom auth links ======
+  var switchToLogin = document.getElementById('switchToLogin');
+  if (switchToLogin) {
+    switchToLogin.addEventListener('click', function(e) { 
+      e.preventDefault();
+      clearSession(); 
+      window.location.href = 'login.html';
+    });
+  }
+  
+  var switchToRegister = document.getElementById('switchToRegister');
+  if (switchToRegister) {
+    switchToRegister.addEventListener('click', function(e) { 
+      e.preventDefault();
+      clearSession(); 
+      window.location.href = 'register.html';
+    });
+  }
 
   // ====== Navbar auth update on load ======
   updateNavbarForAuth();
