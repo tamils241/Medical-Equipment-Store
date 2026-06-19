@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - MediStore</title>
+  <link rel="icon" type="image/webp" href="images/logo.webp">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="css/style.css">
@@ -34,11 +35,11 @@
           <form id="loginForm">
             <div class="mb-3" data-aos="fade-up" data-aos-delay="150">
               <label for="email" class="form-label fw-medium">Email Address</label>
-              <input type="email" class="form-control form-control-lg rounded-pill" id="email" placeholder="you@example.com" required>
+              <input type="email" class="form-control form-control-lg rounded-pill" id="email" placeholder="you@example.com" autocomplete="username" required>
             </div>
             <div class="mb-3" data-aos="fade-up" data-aos-delay="200">
               <label for="password" class="form-label fw-medium">Password</label>
-              <input type="password" class="form-control form-control-lg rounded-pill" id="password" placeholder="Enter your password" minlength="8" required>
+              <input type="password" class="form-control form-control-lg rounded-pill" id="password" placeholder="Enter your password" minlength="8" autocomplete="current-password" required>
             </div>
             <div class="mb-3" data-aos="fade-up" data-aos-delay="250">
               <label class="form-label fw-medium">Sign in as</label>

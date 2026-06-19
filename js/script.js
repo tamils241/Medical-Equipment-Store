@@ -2,15 +2,52 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ====== Auth Functions ======
   function getUsers() {
-    try { return JSON.parse(localStorage.getItem('medistore_users')) || []; } catch { return []; }
+    try {
+      var users = JSON.parse(localStorage.getItem('medistore_users'));
+      return Array.isArray(users) ? users.filter(function (user) {
+        return user && typeof user === 'object' && typeof user.email === 'string';
+      }) : [];
+    } catch {
+      return [];
+    }
   }
-  function saveUsers(users) { localStorage.setItem('medistore_users', JSON.stringify(users)); }
+  function saveUsers(users) {
+    try {
+      localStorage.setItem('medistore_users', JSON.stringify(Array.isArray(users) ? users : []));
+      return true;
+    } catch {
+      return false;
+    }
+  }
 
   function getCurrentUser() {
-    try { return JSON.parse(sessionStorage.getItem('medistore_session')); } catch { return null; }
+    try {
+      var user = JSON.parse(sessionStorage.getItem('medistore_session'));
+      return user && typeof user === 'object' && !Array.isArray(user) ? user : null;
+    } catch {
+      return null;
+    }
   }
-  function setSession(user) { sessionStorage.setItem('medistore_session', JSON.stringify(user)); }
-  function clearSession() { sessionStorage.removeItem('medistore_session'); }
+  function setSession(user) {
+    try {
+      sessionStorage.setItem('medistore_session', JSON.stringify(user));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  function clearSession() {
+    try { sessionStorage.removeItem('medistore_session'); } catch { /* Storage may be unavailable. */ }
+  }
+
+  function escapeHtml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
 
   function isLoggedIn() { return !!getCurrentUser(); }
 
@@ -20,10 +57,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!navRight) return;
     if (user) {
       var dashboardLink = user.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
+      var firstName = typeof user.name === 'string' && user.name.trim() ? user.name.trim().split(/\s+/)[0] : 'Account';
       var dropdownHtml =
         '<div class="dropdown">' +
         '<a class="btn btn-outline-light btn-sm rounded-pill px-3 user-dropdown-toggle" data-bs-toggle="dropdown">' +
-        '<i class="bi bi-person-circle me-1"></i> ' + user.name.split(' ')[0] +
+        '<i class="bi bi-person-circle me-1"></i> ' + escapeHtml(firstName) +
         '</a>' +
         '<ul class="dropdown-menu dropdown-menu-end">' +
         '<li><a class="dropdown-item" href="' + dashboardLink + '"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>' +
@@ -351,18 +389,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ====== Cart Functions ======
   function getCart() {
-    try { return JSON.parse(localStorage.getItem('medistore_cart')) || []; } catch { return []; }
+    try {
+      var cart = JSON.parse(localStorage.getItem('medistore_cart'));
+      return Array.isArray(cart) ? cart.filter(function (item) {
+        return item && typeof item === 'object';
+      }) : [];
+    } catch {
+      return [];
+    }
   }
 
   function saveCart(cart) {
-    localStorage.setItem('medistore_cart', JSON.stringify(cart));
+    try {
+      localStorage.setItem('medistore_cart', JSON.stringify(Array.isArray(cart) ? cart : []));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function getItemQuantity(item) {
+    var quantity = parseInt(item && item.qty, 10);
+    return Number.isFinite(quantity) && quantity > 0 ? quantity : 1;
   }
 
   function updateCartBadge() {
     var badges = document.querySelectorAll('.cart-badge');
     if (badges.length === 0) return;
     var cart = getCart();
-    var count = cart.reduce(function (sum, item) { return sum + (item.qty || 1); }, 0);
+    var count = cart.reduce(function (sum, item) { return sum + getItemQuantity(item); }, 0);
     badges.forEach(function (badge) { badge.textContent = count; });
   }
 
@@ -373,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (cart[i].id === product.id) { existing = cart[i]; break; }
     }
     if (existing) {
-      existing.qty = (existing.qty || 1) + 1;
+      existing.qty = getItemQuantity(existing) + 1;
     } else {
       product.qty = 1;
       cart.push(product);
@@ -447,22 +502,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
       for (var i = 0; i < cart.length; i++) {
         var item = cart[i];
-        var itemTotal = item.price * (item.qty || 1);
+        var itemPrice = Number(item.price);
+        if (!Number.isFinite(itemPrice) || itemPrice < 0) itemPrice = 0;
+        var itemQty = getItemQuantity(item);
+        var itemName = escapeHtml(item.name || 'Product');
+        var itemImage = escapeHtml(item.image || 'images/logo.webp');
+        var itemTotal = itemPrice * itemQty;
         subtotal += itemTotal;
         html += '<div class="card border-0 shadow-sm mb-3 cart-item" data-index="' + i + '">' +
           '<div class="card-body">' +
           '<div class="row g-3 align-items-center">' +
           '<div class="col-3 col-md-2">' +
-          '<img src="' + (item.image || 'images/placeholder.webp') + '" alt="' + item.name + '" class="img-fluid rounded">' +
+          '<img src="' + itemImage + '" alt="' + itemName + '" class="img-fluid rounded">' +
           '</div>' +
           '<div class="col-5 col-md-4">' +
-          '<h6 class="fw-bold mb-1">' + item.name + '</h6>' +
-          '<small class="text-muted">$' + item.price.toFixed(2) + ' each</small>' +
+          '<h6 class="fw-bold mb-1">' + itemName + '</h6>' +
+          '<small class="text-muted">$' + itemPrice.toFixed(2) + ' each</small>' +
           '</div>' +
           '<div class="col-2 col-md-3">' +
           '<div class="input-group input-group-sm">' +
           '<button class="btn btn-outline-secondary cart-qty-minus" data-index="' + i + '">-</button>' +
-          '<input type="text" class="form-control text-center cart-qty-input" value="' + (item.qty || 1) + '" readonly>' +
+          '<input type="text" class="form-control text-center cart-qty-input" value="' + itemQty + '" readonly>' +
           '<button class="btn btn-outline-secondary cart-qty-plus" data-index="' + i + '">+</button>' +
           '</div>' +
           '</div>' +
@@ -496,7 +556,8 @@ document.addEventListener('DOMContentLoaded', function () {
           var idx = parseInt(this.getAttribute('data-index'));
           var cart = getCart();
           if (cart[idx]) {
-            if (cart[idx].qty > 1) { cart[idx].qty--; } else { cart.splice(idx, 1); }
+            var quantity = getItemQuantity(cart[idx]);
+            if (quantity > 1) { cart[idx].qty = quantity - 1; } else { cart.splice(idx, 1); }
             saveCart(cart);
             renderCart();
             updateCartBadge();
@@ -509,7 +570,7 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.addEventListener('click', function () {
           var idx = parseInt(this.getAttribute('data-index'));
           var cart = getCart();
-          if (cart[idx]) { cart[idx].qty = (cart[idx].qty || 1) + 1; }
+          if (cart[idx]) { cart[idx].qty = getItemQuantity(cart[idx]) + 1; }
           saveCart(cart);
           renderCart();
           updateCartBadge();
@@ -598,16 +659,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const statsSection = document.querySelector('.stat-card');
   if (statsSection) {
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          animateStats();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    var statsRow = statsSection.closest('.row');
-    if (statsRow) observer.observe(statsRow);
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateStats();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      var statsRow = statsSection.closest('.row');
+      if (statsRow) observer.observe(statsRow);
+    } else {
+      animateStats();
+    }
   }
 
   // ====== Product Category Filter & Pagination ======
@@ -819,7 +884,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var name = document.getElementById('contactName').value.trim();
+      var contactName = document.getElementById('contactName');
+      if (!contactName) return;
+      var name = contactName.value.trim();
       if (!/^[A-Za-z\s]+$/.test(name)) { alert('Name must contain only letters and spaces.'); return; }
       if (name.length > 16) { alert('Name must be 16 characters or less.'); return; }
       alert('Thank you for your message! We will get back to you shortly.');
@@ -830,18 +897,22 @@ document.addEventListener('DOMContentLoaded', function () {
   // ====== Scroll Reveal Animation ======
   const aosElements = document.querySelectorAll('[data-aos]');
   if (aosElements.length) {
-    const aosObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var delay = parseInt(entry.target.getAttribute('data-aos-delay')) || 0;
-          setTimeout(function () {
-            entry.target.classList.add('aos-animate');
-          }, delay);
-          aosObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    aosElements.forEach(function (el) { aosObserver.observe(el); });
+    if ('IntersectionObserver' in window) {
+      const aosObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var delay = parseInt(entry.target.getAttribute('data-aos-delay')) || 0;
+            setTimeout(function () {
+              entry.target.classList.add('aos-animate');
+            }, delay);
+            aosObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      aosElements.forEach(function (el) { aosObserver.observe(el); });
+    } else {
+      aosElements.forEach(function (el) { el.classList.add('aos-animate'); });
+    }
   }
 
   // ====== Loader ======
@@ -895,22 +966,21 @@ document.addEventListener('DOMContentLoaded', function () {
         return '<span class="word" style="--i:' + i + '">' + w + '</span>';
       }).join(' ');
     });
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-words');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    observer.observe(container);
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-words');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(container);
+    } else {
+      container.classList.add('animate-words');
+    }
   }
   animateSectionWords('.how-it-works .section-title');
   animateSectionWords('#categories .section-title');
-
-  console.log('%c MediStore %c Medical Equipment Theme v1.0 ',
-    'background:#0d6efd;color:#fff;padding:4px 0 4px 8px;border-radius:4px 0 0 4px;font-weight:700;',
-    'background:#071526;color:#fff;padding:4px 8px 4px 0;border-radius:0 4px 4px 0;font-weight:400;'
-  );
 
 });

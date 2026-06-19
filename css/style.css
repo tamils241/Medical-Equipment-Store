@@ -879,13 +879,13 @@ body {
 }
 
 .page-header-bg-products {
-  background: linear-gradient(135deg, rgba(11,29,53,0.88) 0%, rgba(26,58,92,0.78) 50%, rgba(13,110,253,0.72) 100%), url('../images/page-bg-products.webp');
+  background: linear-gradient(135deg, rgba(11,29,53,0.88) 0%, rgba(26,58,92,0.78) 50%, rgba(13,110,253,0.72) 100%), url('../images/page-bg-products_6_11zon.webp');
   background-size: cover;
   background-position: center;
 }
 
 .page-header-bg-categories {
-  background: linear-gradient(135deg, rgba(7,21,38,0.88) 0%, rgba(11,29,53,0.78) 50%, rgba(13,110,253,0.72) 100%), url('../images/page-bg-categories.webp');
+  background: linear-gradient(135deg, rgba(7,21,38,0.88) 0%, rgba(11,29,53,0.78) 50%, rgba(13,110,253,0.72) 100%), url('../images/page-bg-categories_4_11zon.webp');
   background-size: cover;
   background-position: center;
 }
@@ -903,7 +903,7 @@ body {
 }
 
 .page-header-bg-contact {
-  background: linear-gradient(135deg, rgba(11,29,53,0.88) 0%, rgba(26,58,92,0.78) 50%, rgba(25,135,84,0.72) 100%), url('../images/page-bg-contact.webp');
+  background: linear-gradient(135deg, rgba(11,29,53,0.88) 0%, rgba(26,58,92,0.78) 50%, rgba(25,135,84,0.72) 100%), url('../images/page-bg-contact_5_11zon.webp');
   background-size: cover;
   background-position: center;
 }
@@ -915,7 +915,7 @@ body {
 }
 
 .page-header-bg-register {
-  background: linear-gradient(135deg, rgba(7,21,38,0.88) 0%, rgba(11,29,53,0.78) 50%, rgba(13,110,253,0.72) 100%), url('../images/page-bg-categories.webp');
+  background: linear-gradient(135deg, rgba(7,21,38,0.88) 0%, rgba(11,29,53,0.78) 50%, rgba(13,110,253,0.72) 100%), url('../images/page-bg-categories_4_11zon.webp');
   background-size: cover;
   background-position: center;
 }
@@ -1203,13 +1203,13 @@ body {
 
 /* ====== Dashboard ====== */
 .page-header-bg-admin {
-  background: linear-gradient(135deg, rgba(11,29,53,0.88) 0%, rgba(26,58,92,0.78) 50%, rgba(220,53,69,0.72) 100%), url('../images/page-bg-products.webp');
+  background: linear-gradient(135deg, rgba(11,29,53,0.88) 0%, rgba(26,58,92,0.78) 50%, rgba(220,53,69,0.72) 100%), url('../images/page-bg-products_6_11zon.webp');
   background-size: cover;
   background-position: center;
 }
 
 .page-header-bg-user {
-  background: linear-gradient(135deg, rgba(7,21,38,0.88) 0%, rgba(11,29,53,0.78) 50%, rgba(13,110,253,0.72) 100%), url('../images/page-bg-categories.webp');
+  background: linear-gradient(135deg, rgba(7,21,38,0.88) 0%, rgba(11,29,53,0.78) 50%, rgba(13,110,253,0.72) 100%), url('../images/page-bg-categories_4_11zon.webp');
   background-size: cover;
   background-position: center;
 }

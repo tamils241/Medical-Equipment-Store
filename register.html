@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register - MediStore</title>
+  <link rel="icon" type="image/webp" href="images/logo.webp">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="css/style.css">
@@ -35,28 +36,28 @@
             <div class="row g-3">
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
                 <label for="firstName" class="form-label fw-medium">First Name</label>
-                  <input type="text" class="form-control form-control-lg rounded-pill" id="firstName" placeholder="John" maxlength="16" pattern="[A-Za-z\s]+" title="Letters and spaces only" required>
+                  <input type="text" class="form-control form-control-lg rounded-pill" id="firstName" placeholder="John" maxlength="16" pattern="[A-Za-z\s]+" title="Letters and spaces only" autocomplete="given-name" required>
               </div>
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
                 <label for="lastName" class="form-label fw-medium">Last Name</label>
-                  <input type="text" class="form-control form-control-lg rounded-pill" id="lastName" placeholder="Doe" maxlength="16" pattern="[A-Za-z\s]+" title="Letters and spaces only" required>
+                  <input type="text" class="form-control form-control-lg rounded-pill" id="lastName" placeholder="Doe" maxlength="16" pattern="[A-Za-z\s]+" title="Letters and spaces only" autocomplete="family-name" required>
               </div>
             </div>
             <div class="mb-3 mt-3" data-aos="fade-up" data-aos-delay="250">
               <label for="regEmail" class="form-label fw-medium">Email Address</label>
-              <input type="email" class="form-control form-control-lg rounded-pill" id="regEmail" placeholder="you@example.com" required>
+              <input type="email" class="form-control form-control-lg rounded-pill" id="regEmail" placeholder="you@example.com" autocomplete="username" required>
             </div>
             <div class="mb-3" data-aos="fade-up" data-aos-delay="300">
               <label for="regMobile" class="form-label fw-medium">Mobile Number</label>
-              <input type="tel" class="form-control form-control-lg rounded-pill" id="regMobile" placeholder="+1 (555) 123-4567" required>
+              <input type="tel" class="form-control form-control-lg rounded-pill" id="regMobile" placeholder="+1 (555) 123-4567" autocomplete="tel" required>
             </div>
             <div class="mb-3" data-aos="fade-up" data-aos-delay="350">
               <label for="regPassword" class="form-label fw-medium">Password</label>
-              <input type="password" class="form-control form-control-lg rounded-pill" id="regPassword" placeholder="Create a strong password" minlength="8" required>
+              <input type="password" class="form-control form-control-lg rounded-pill" id="regPassword" placeholder="Create a strong password" minlength="8" autocomplete="new-password" required>
             </div>
             <div class="mb-3" data-aos="fade-up" data-aos-delay="400">
               <label for="confirmPassword" class="form-label fw-medium">Confirm Password</label>
-              <input type="password" class="form-control form-control-lg rounded-pill" id="confirmPassword" placeholder="Confirm your password" minlength="8" required>
+              <input type="password" class="form-control form-control-lg rounded-pill" id="confirmPassword" placeholder="Confirm your password" minlength="8" autocomplete="new-password" required>
             </div>
             <div class="mb-3" data-aos="fade-up" data-aos-delay="450">
               <label class="form-label fw-medium">Register as</label>
